@@ -1,4 +1,4 @@
-package com.example.roomdatabade.Model;
+package com.example.hiltroom.Model;
 
 import android.graphics.Bitmap;
 

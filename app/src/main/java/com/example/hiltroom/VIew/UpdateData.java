@@ -1,4 +1,4 @@
-package com.example.roomdatabade.VIew;
+package com.example.hiltroom.VIew;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,17 +20,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.roomdatabade.DataBase.MyDataBase;
-import com.example.roomdatabade.Helper.RoomHelper;
-import com.example.roomdatabade.InsertData;
-import com.example.roomdatabade.Model.Student;
-import com.example.roomdatabade.R;
+import com.example.hiltroom.DataBase.MyDataBase;
+import com.example.hiltroom.Helper.RoomHelper;
+import com.example.hiltroom.InsertData;
+import com.example.hiltroom.Model.Student;
+import com.example.hiltroom.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+@AndroidEntryPoint
 public class UpdateData extends AppCompatActivity {
 
     EditText tv_name,tv_roll,tv_reg,tv_subject,tv_phone,tv_address;
@@ -46,9 +50,12 @@ public class UpdateData extends AppCompatActivity {
     public static String ADDRESS = "";
     Bitmap bitmap;
     Uri mainUri;
-    String encodedImageString;
+    public static String encodedImageString;
     CircleImageView profile_image;
 
+
+    @Inject
+    RoomHelper roomHelper;
 
 
     @Override
@@ -78,8 +85,11 @@ public class UpdateData extends AppCompatActivity {
         tv_phone.setText(PHONE);
         tv_address.setText(ADDRESS);
 
-        MyDataBase myDataBase = MyDataBase.getDatabase(this);
-        RoomHelper roomHelper = myDataBase.roomDao();
+
+        byte[] decodedBytes = Base64.decode(encodedImageString, Base64.DEFAULT);
+        Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+        profile_image.setImageBitmap(decodedBitmap);
 
 
         profile_image.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +154,11 @@ public class UpdateData extends AppCompatActivity {
         encodedImageString = Base64.encodeToString(bytes, Base64.DEFAULT);
 
 
+
     }
+
+
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.roomdatabade;
+package com.example.hiltroom;
 
 import org.junit.Test;
 

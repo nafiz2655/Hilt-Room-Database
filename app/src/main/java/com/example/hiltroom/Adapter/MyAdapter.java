@@ -1,4 +1,4 @@
-package com.example.roomdatabade.Adapter;
+package com.example.hiltroom.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.roomdatabade.DataBase.MyDataBase;
-import com.example.roomdatabade.Helper.RoomHelper;
-import com.example.roomdatabade.Model.Student;
-import com.example.roomdatabade.R;
-import com.example.roomdatabade.VIew.UpdateData;
+import com.example.hiltroom.DataBase.MyDataBase;
+import com.example.hiltroom.Helper.RoomHelper;
+import com.example.hiltroom.Model.Student;
+import com.example.hiltroom.R;
+import com.example.hiltroom.VIew.UpdateData;
 
 import java.util.ArrayList;
 
@@ -99,6 +99,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 UpdateData.REG = sreg;
                 UpdateData.ROLL = sRoll;
                 UpdateData.SUB = sSubcect;
+                UpdateData.encodedImageString= sImage;
                 context.startActivity(new Intent(context,UpdateData.class));
 
 

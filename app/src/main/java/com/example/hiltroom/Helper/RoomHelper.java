@@ -1,4 +1,4 @@
-package com.example.roomdatabade.Helper;
+package com.example.hiltroom.Helper;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.roomdatabade.Model.Student;
+import com.example.hiltroom.Model.Student;
 
 import java.util.List;
 

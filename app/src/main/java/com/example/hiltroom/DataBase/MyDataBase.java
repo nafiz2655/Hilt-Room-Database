@@ -1,4 +1,4 @@
-package com.example.roomdatabade.DataBase;
+package com.example.hiltroom.DataBase;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.roomdatabade.Helper.RoomHelper;
-import com.example.roomdatabade.Model.Student;
+import com.example.hiltroom.Helper.RoomHelper;
+import com.example.hiltroom.Model.Student;
 
 @Database(entities = {Student.class}, version = 1, exportSchema = false)
 public abstract class MyDataBase extends RoomDatabase {

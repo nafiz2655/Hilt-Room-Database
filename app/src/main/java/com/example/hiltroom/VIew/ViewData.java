@@ -1,4 +1,4 @@
-package com.example.roomdatabade.VIew;
+package com.example.hiltroom.VIew;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,22 +12,29 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.roomdatabade.Adapter.MyAdapter;
-import com.example.roomdatabade.DataBase.MyDataBase;
-import com.example.roomdatabade.Helper.RoomHelper;
-import com.example.roomdatabade.InsertData;
-import com.example.roomdatabade.Model.Student;
-import com.example.roomdatabade.R;
+import com.example.hiltroom.Adapter.MyAdapter;
+import com.example.hiltroom.DataBase.MyDataBase;
+import com.example.hiltroom.Helper.RoomHelper;
+import com.example.hiltroom.InsertData;
+import com.example.hiltroom.Model.Student;
+import com.example.hiltroom.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class ViewData extends AppCompatActivity {
 
     MyAdapter myAdapter;
     RecyclerView recyclerView;
     ArrayList<Student> arrayList = new ArrayList<>();
     ImageView add;
+
+    @Inject
     RoomHelper roomHelper;
 
 
@@ -46,8 +53,7 @@ public class ViewData extends AppCompatActivity {
         add = findViewById(R.id.add);
 
 
-        MyDataBase myDataBase = MyDataBase.getDatabase(this);
-         roomHelper = myDataBase.roomDao();
+
 
 
         try {

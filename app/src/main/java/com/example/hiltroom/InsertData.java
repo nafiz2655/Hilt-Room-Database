@@ -1,4 +1,4 @@
-package com.example.roomdatabade;
+package com.example.hiltroom;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,17 +21,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.roomdatabade.DataBase.MyDataBase;
-import com.example.roomdatabade.Helper.RoomHelper;
-import com.example.roomdatabade.Model.Student;
-import com.example.roomdatabade.VIew.ViewData;
+import com.example.hiltroom.DataBase.MyDataBase;
+import com.example.hiltroom.Helper.RoomHelper;
+import com.example.hiltroom.Model.Student;
+import com.example.hiltroom.VIew.ViewData;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+@AndroidEntryPoint
 public class InsertData extends AppCompatActivity {
 
     EditText tv_name,tv_roll,tv_reg,tv_subject,tv_phone,tv_address;
@@ -39,10 +43,19 @@ public class InsertData extends AppCompatActivity {
     TextView tv_submit;
     CircleImageView profile_image;
     Uri mainUri;
+    
 
 
     Bitmap bitmap;
     String encodedImageString;
+
+
+
+    //Fild injection....................
+    @Inject
+    RoomHelper roomHelper;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +77,8 @@ public class InsertData extends AppCompatActivity {
         tv_submit = findViewById(R.id.tv_submit);
         profile_image = findViewById(R.id.profile_image);
 
-        MyDataBase myDataBase = MyDataBase.getDatabase(this);
-        RoomHelper roomHelper = myDataBase.roomDao();
+
+
 
         profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +90,14 @@ public class InsertData extends AppCompatActivity {
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (encodedImageString==null){
+                    Toast.makeText(InsertData.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+                }else {
+
+
+
+
                 try {
 
                     String name = tv_name.getText().toString();
@@ -90,12 +111,14 @@ public class InsertData extends AppCompatActivity {
 
 
 
+
                     roomHelper.insertData(new Student(name,roll,reg,subject,phone,address,encodedImageString));
                     Toast.makeText(InsertData.this, "Data Insert Succeessfull", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(InsertData.this, ViewData.class));
                 }catch (Exception e){
                     Toast.makeText(InsertData.this, "Data can not Add", Toast.LENGTH_SHORT).show();
+                }
                 }
             }
         });
