@@ -38,7 +38,6 @@ public class ViewData extends AppCompatActivity {
     RoomHelper roomHelper;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,7 @@ public class ViewData extends AppCompatActivity {
             arrayList.addAll(students);
 
 
-            myAdapter = new MyAdapter(arrayList,this);
+            myAdapter = new MyAdapter(arrayList,this,roomHelper);
             recyclerView.setAdapter(myAdapter);
 
         } catch (Exception e) {

@@ -13,13 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hiltroom.DataBase.MyDataBase;
 import com.example.hiltroom.Helper.RoomHelper;
 import com.example.hiltroom.Model.Student;
 import com.example.hiltroom.R;
 import com.example.hiltroom.VIew.UpdateData;
+import com.example.hiltroom.VIew.ViewData;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -28,12 +30,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     ArrayList<Student> arrayList = new ArrayList<>();
     Context  context;
 
+
+
+    RoomHelper roomHelper;
+
     public MyAdapter() {
     }
 
     public MyAdapter(ArrayList<Student> arrayList, Context context) {
+    }
+
+    public MyAdapter(ArrayList<Student> arrayList, Context context, RoomHelper roomHelper) {
         this.arrayList = arrayList;
         this.context = context;
+        this.roomHelper = roomHelper;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -108,8 +118,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         holder.tv_delete.setOnClickListener(view -> {
 
-            MyDataBase myDataBase = MyDataBase.getDatabase(context);
-            RoomHelper roomHelper = myDataBase.roomDao();
 
             // Remove the item from the database
             roomHelper.deleteData(student);

@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    //hilt implementation
     id 'com.google.dagger.hilt.android'
 }
 
@@ -44,6 +45,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //hilt implementation
     implementation "com.google.dagger:hilt-android:2.51.1"
     annotationProcessor 'com.google.dagger:hilt-compiler:2.51.1'
 }
